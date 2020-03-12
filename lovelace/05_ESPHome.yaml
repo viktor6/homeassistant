@@ -1,0 +1,77 @@
+title: ESPHome 
+icon: mdi:chip
+cards:
+  - type: entities
+    title: Boiler
+    show_header_toggle: false
+    state_color: true
+    entities:
+      - binary_sensor.boiler
+      - sensor.ip_boiler
+      - sensor.status_boiler
+      - binary_sensor.boiler_button
+    #   - binary_sensor.boiler_relay
+      - switch.boiler_relay
+      - switch.restart_boiler_switch
+      
+  - type: entities
+    title: Wall switch
+    show_header_toggle: false
+    state_color: true
+    entities:
+      - binary_sensor.wall_switch_bedroom
+      - sensor.ip_wall_switch_bedroom
+      - sensor.status_wall_switch_bedroom
+      - binary_sensor.button_wall_switch_bedroom
+      - switch.relay_wall_switch_bedroom
+      - switch.restart_wall_switch_bedroom
+
+  - type: entities
+    title: Corridor light
+    show_header_toggle: false
+    state_color: true
+    entities:
+      - binary_sensor.corridor_light
+      - sensor.ip_corridor_light
+      - sensor.status_corridor_light
+      - binary_sensor.corridor_night_light_button
+      - switch.corridor_night_light_relay
+      - switch.restart_corridor_light
+      
+  - type: entities
+    title: BME280
+    show_header_toggle: false
+    state_color: true
+    entities:
+      - binary_sensor.bme280
+      - sensor.ip_bme280
+      - sensor.status_bme280
+      - sensor.bme280_temperature
+      - sensor.bme280_humidity
+      - sensor.bme280_pressure
+      - switch.restart_bme280
+      
+  - type: entities
+    title: 'Magic Light'
+    show_header_toggle: false
+    state_color: true
+    entities:
+      - binary_sensor.magic_light
+      - sensor.ip_magic_light
+      - sensor.status_magic_light
+      - light.magic_light
+      - switch.restart_magic_light
+      
+  - type: entities
+    title: Power strip
+    show_header_toggle: false
+    state_color: true
+    entities:
+      - switch.xiaomi_power_strip
+
+  - type: entities
+    title: Wi-Fi socket
+    show_header_toggle: false
+    state_color: true
+    entities:
+      - switch.undertabble_mi_wifi_socket

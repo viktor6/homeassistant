@@ -1,0 +1,9 @@
+people:
+  name: people
+  entities:
+    - device_tracker.redmi_note_3
+    - device_tracker.mi9_miphone
+    - device_tracker.s50
+    - device_tracker.redmi_5_plus_router
+    - device_tracker.redmi5plus_mom
+

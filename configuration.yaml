@@ -1,0 +1,89 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+homeassistant:
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: metric
+  time_zone: !secret time_zone
+  customize: !include_dir_merge_named includes/customize
+  packages:
+    pack_1: !include westen.yaml
+
+default_config:
+
+updater:
+
+logger:
+  default: WARNING
+  logs:
+    homeassistant.loader: ERROR
+
+wake_on_lan:
+
+#lovelace
+lovelace:
+  mode: yaml
+
+customizer:
+  custom_ui: hosted
+
+frontend:
+  themes: !include_dir_merge_named themes/
+
+hacs:
+  token: !secret hacs_token 
+  appdaemon: true
+  
+# Text to speech
+tts:
+  - platform: google_translate
+
+google:
+  client_id: !secret google_client_id 
+  client_secret: !secret google_client_secret
+  
+xiaomi_aqara:
+  discovery_retry: 10
+  gateways:
+    - mac: !secret aqara_mac
+      key: !secret aqara_key
+      
+# Telegram Bot
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api_key 
+    allowed_chat_ids:
+      - !secret my_chat
+    #   - CHAT_ID_2
+    
+# Router
+asuswrt:
+  host: 192.168.31.1
+  username: !secret router_usr
+  password: !secret router_pwd
+device_tracker:
+  - platform: asuswrt
+    consider_home: 180
+    new_device_defaults:
+      track_new_devices: false
+
+rest_command:
+  narodmon:
+    url: http://narodmon.ru/get?ID={{ID}}&T1={{T1}}&H1={{H1}}&P1={{P1}}
+
+#Folders
+sensor: !include_dir_merge_list includes/sensors
+binary_sensor: !include_dir_merge_list includes/bin_sensor
+automation: !include_dir_merge_list includes/automation
+script: !include_dir_merge_named includes/scripts
+switch: !include_dir_merge_list includes/switches
+
+#Files
+light: !include includes/light.yaml
+scene: !include includes/scenes.yaml
+group: !include includes/groups.yaml
+notify: !include includes/notify.yaml
+
+recorder: !include includes/recorder.yaml
+

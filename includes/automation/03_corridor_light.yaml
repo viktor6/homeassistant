@@ -1,0 +1,23 @@
+- alias: Sunset light on
+  description: ''
+  trigger:
+  - event: sunset
+    platform: sun
+  condition: []
+  action:
+  - device_id: 318d1afd827c4fdc86e4fbd1555aad19
+    domain: switch
+    entity_id: switch.corridor_night_light_relay
+    type: turn_on
+  
+- alias: 00_00_light_off
+  description: ''
+  trigger:
+  - at: 00:00
+    platform: time
+  condition: []
+  action:
+  - device_id: 318d1afd827c4fdc86e4fbd1555aad19
+    domain: switch
+    entity_id: switch.corridor_night_light_relay
+    type: turn_off

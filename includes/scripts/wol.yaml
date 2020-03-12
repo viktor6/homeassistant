@@ -1,0 +1,4 @@
+wakeup_my_pc:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.my_pc

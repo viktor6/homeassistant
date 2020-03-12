@@ -1,0 +1,29 @@
+binary_sensor.boiler:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'rgb(0, 180, 30)';
+      else return 'rgb(255, 0, 0)';
+      
+binary_sensor.wall_switch_bedroom:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'rgb(0, 180, 30)';
+      else return 'rgb(255, 0, 0)';
+      
+binary_sensor.corridor_light:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'rgb(0, 180, 30)';
+      else return 'rgb(255, 0, 0)';
+      
+binary_sensor.bme280:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'rgb(0, 180, 30)';
+      else return 'rgb(255, 0, 0)';
+
+binary_sensor.magic_light:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'rgb(0, 180, 30)';
+      else return 'rgb(255, 0, 0)';

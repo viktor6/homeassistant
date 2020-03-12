@@ -1,0 +1,40 @@
+  purge_keep_days: 3
+  db_url: !secret db_link
+  include:
+    entities:
+#Climate
+      - climate.westen
+      - binary_sensor.boiler_relay
+      - switch.boiler_relay
+      - sensor.heater_relay_status
+      - sensor.thermostat_status
+      - group.central_heater
+#BME280
+      - sensor.bme280_humidity
+      - sensor.bme280_pressure
+      - sensor.bme280_pressure_in_mmhg
+      - sensor.bme280_temperature
+#System
+      - sensor.cpu_temperature
+      - sensor.processor_use
+      - sensor.memory_use_percent
+    #   - sensor.maria_db_size
+
+#zigbee sensors
+      - sensor.temperature_158d00041d6e0b
+      - sensor.temperature_158d00044afff0
+      - sensor.humidity_158d00041d6e0b
+      - sensor.humidity_158d00044afff0
+#BT sensors
+      - sensor.mi_h_582d3434ca5b
+      - sensor.mi_t_582d3434ca5b
+      
+      - sensor.illumination_50ec50c4cd8b
+      - light.gateway_light_50ec50c4cd8b
+#Power current
+      - sensor.load_158d0003535c2f
+      - sensor.load_158d0003a52e45
+      - sensor.load_158d0003a58131
+      - sensor.load_broadlink_1
+      - sensor.load_total_energy
+      - sensor.load_xiaomi_power_strip

@@ -1,0 +1,274 @@
+title: Котел
+icon: mdi:radiator
+cards:
+  - type: entities
+    entities:
+      -  entity: switch.westen_hvac
+         name: "Котел"
+         icon: mdi:radiator
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:vertical-stack-in-card
+        # title: Управління котлом
+        cards:
+        - type: thermostat
+          entity: climate.westen
+        - type: entities
+          entities:
+            - entity: input_boolean.heater_automation_active
+#            - entity: climate.westen
+#              name: "Котел Westen"
+            - entity: sensor.mi_t_582d3434ca5b
+              name: "Температура в домі"
+            - entity: sensor.bme280_temperature
+              name: "Температура на вулиці"
+            - entity: binary_sensor.boiler_relay
+              name: "Реле котла"
+            - entity: sensor.heater_away_mode_status
+              name: "Режим 'Нікого немає вдома'"
+            - type: divider
+            - entity: input_select.heater_automode_heater
+              name: "Режим"
+            - entity: switch.boiler_relay
+              name: "Реле котла"
+              secondary_info: last-changed
+            - entity: input_boolean.heater_day_night_automode
+              name: "Окрема t° для Дня/Ночі"
+            - entity: input_number.heater_set_day_temp
+              name: "День"
+            - entity: input_number.heater_set_night_temp
+              name: "Ніч"
+            - entity: input_boolean.heater_outdoor_temp_mode
+              name: "Враховувати t° на вулиці"
+            - entity: input_number.heater_set_outdoor_temp
+              name: "Вкл тільки якщо t° меньше °C"
+            - entity: input_boolean.heater_notifications
+              name: Сповіщати
+            - type: divider
+            - entity: group.heater_show_automations
+              type: custom:fold-entity-row
+              name: "Автоматизації"
+              icon: mdi:calendar-text
+              config:
+                secondary_info: entity-id
+      
+#  - type: custom:vertical-stack-in-card
+  - type: vertical-stack
+    # title: Температура
+    cards:
+      - type: weather-forecast
+        entity: weather.home_assistant
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.bme280_temperature
+        name: Out temp
+        show:
+          labels: true
+        hours_to_show: 48
+        points_per_hour: 1
+        color_thresholds:
+          - value: -40
+            color: "#0000ff"
+          - value: 0
+            color: "#00aaff"
+          - value: 15
+            color: "#00ff55"
+          - value: 30
+            color: "#ffff00"
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.mi_t_582d3434ca5b
+          - sensor.temperature_158d00044afff0
+          - sensor.temperature_158d00041d6e0b
+        name: In temp
+        show:
+          labels: true
+        color_thresholds:
+          - value: 18
+            color: "#0000ff"
+          - value: 19
+            color: "#00ff55"
+          - value: 22
+            color: "#ffff00"
+        hours_to_show: 24
+        points_per_hour: 2
+
+  - type: custom:vertical-stack-in-card
+       # - type: vertical-stack
+    cards:
+    - type: markdown
+      content: "Out"
+
+    - type: horizontal-stack
+      cards:
+# Out
+      - type: custom:canvas-gauge-card
+        entity: sensor.bme280_temperature
+        card_height: 133
+        gauge:
+          type: "radial-gauge"
+          title: Temperature
+          width: 133
+          height: 150
+          majorTicks: ["-40", "-30", "-20", "-10", "0", "10", "20", "30", "40"]
+          minorTicks: 2
+          strokeTicks: true
+          highlights: [{"from": -40, "to": -20, "color": "rgba(0,0, 255, .5)"}, {"from": 20, "to": 40, "color": "rgba(200, 50, 50, .75)" }]
+          minValue: -40
+          maxValue: 40
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+      - type: custom:canvas-gauge-card
+        entity: sensor.bme280_humidity
+        card_height: 133
+        gauge:
+          type: "radial-gauge"
+          title: Humidity
+          width: 133
+          height: 150
+          majorTicks: ["0", "10", "20", "30", "40","50", "60", "70", "80", "90", "100"]
+          minorTicks: 5
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+          
+      - type: custom:canvas-gauge-card
+        entity: sensor.bme280_pressure_in_mmhg
+        card_height: 133
+        gauge:
+          type: "radial-gauge"
+          title: Pressure
+          width: 133
+          height: 150
+          highlights: [{"from": 720, "to": 735, "color": "rgba(255,153,0, .5)"},
+                      {"from": 735, "to": 752, "color": "rgba(0,170,255, .5)"},
+                      {"from": 752, "to": 767, "color": "rgba(0, 255, 0, .5)"},
+                      {"from": 767, "to": 770, "color": "rgba(0,170,255, .5)"},
+                      {"from": 770, "to": 780, "color": "rgba(255,153,0, .5)"}]
+          majorTicks: ["720", "730", "740", "750", "760", "770", "780"]
+          minorTicks: 5
+          minValue: 720
+          maxValue: 780
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+          
+    - type: markdown
+      content: "Living room"
+    - type: horizontal-stack
+      cards:
+# Living room
+
+      - type: custom:canvas-gauge-card
+        entity: sensor.mi_t_582d3434ca5b
+        card_height: 200
+        gauge:
+          type: "radial-gauge"
+          title: Temperature
+          width: 200
+          height: 200
+          majorTicks: ["0", "5", "10", "15", "20","25", "30", "35", "40"]
+          minorTicks: 5
+          highlights: [{"from": 0, "to": 10, "color": "rgba(0,0, 255, .5)"}, {"from": 30, "to": 40, "color": "rgba(200, 50, 50, .75)" }]
+          minValue: 0
+          maxValue: 40
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+      - type: custom:canvas-gauge-card
+        entity: sensor.mi_h_582d3434ca5b
+        card_height: 200
+        gauge:
+          type: "radial-gauge"
+          title: Humidity
+          width: 200
+          height: 200
+          majorTicks: ["0", "10", "20", "30", "40","50", "60", "70", "80", "90", "100"]
+          minorTicks: 5
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+    - type: markdown
+      content: "Master bedroom"
+    - type: horizontal-stack
+      cards:
+# M bedroom
+
+      - type: custom:canvas-gauge-card
+        entity: sensor.temperature_158d00041d6e0b
+        card_height: 200
+        gauge:
+          type: "radial-gauge"
+          title: Temperature
+          width: 200
+          height: 200
+          majorTicks: ["0", "5", "10", "15", "20","25", "30", "35", "40"]
+          minorTicks: 5
+          highlights: [{"from": 0, "to": 10, "color": "rgba(0,0, 255, .5)"}, {"from": 30, "to": 40, "color": "rgba(200, 50, 50, .75)" }]
+          minValue: 0
+          maxValue: 40
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+      - type: custom:canvas-gauge-card
+        entity: sensor.humidity_158d00041d6e0b
+        card_height: 200
+        gauge:
+          type: "radial-gauge"
+          title: Humidity
+          width: 200
+          height: 200
+          majorTicks: ["0", "10", "20", "30", "40","50", "60", "70", "80", "90", "100"]
+          minorTicks: 5
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+
+    - type: markdown
+      content: "Children bedroom"
+    - type: horizontal-stack
+      cards:
+# C bedroom
+
+      - type: custom:canvas-gauge-card
+        entity: sensor.temperature_158d00044afff0
+        card_height: 200
+        gauge:
+          type: "radial-gauge"
+          title: Temperature
+          width: 200
+          height: 200
+          majorTicks: ["0", "5", "10", "15", "20","25", "30", "35", "40"]
+          minorTicks: 5
+          highlights: [{"from": 0, "to": 10, "color": "rgba(0,0, 255, .5)"}, {"from": 30, "to": 40, "color": "rgba(200, 50, 50, .75)" }]
+          minValue: 0
+          maxValue: 40
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+      - type: custom:canvas-gauge-card
+        entity: sensor.humidity_158d00044afff0
+        card_height: 200
+        gauge:
+          type: "radial-gauge"
+          title: Humidity
+          width: 200
+          height: 200
+          majorTicks: ["0", "10", "20", "30", "40","50", "60", "70", "80", "90", "100"]
+          minorTicks: 5
+          borderShadowWidth: 0
+          borderOuterWidth: 0
+          borderMiddleWidth: 0
+          borderInnerWidth: 0
+

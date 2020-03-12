@@ -1,0 +1,5 @@
+sensor.mi_t_582d3434ca5b:
+ friendly_name: Living room temperature
+ 
+sensor.mi_h_582d3434ca5b:
+ friendly_name: Living room humidity

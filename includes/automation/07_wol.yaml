@@ -1,0 +1,30 @@
+- id: '1578759248643'
+  alias: wakeup_pc
+  description: ''
+  trigger:
+  - entity_id: person.sergei
+    from: not_home
+    platform: state
+    to: home
+  action:
+  - service: script.wakeup_my_pc
+  
+- alias: pc_accessories_on
+  trigger:
+  - entity_id: switch.my_pc
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.undertabble_mi_wifi_socket
+
+- alias: pc_accessories_off
+  trigger:
+  - entity_id: switch.my_pc
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.undertabble_mi_wifi_socket
