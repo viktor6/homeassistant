@@ -5,7 +5,7 @@ climate.westen:
       if (state === 'idle') return 'rgb(0, 153, 255)';
       if (state === 'heat') return 'rgb(255, 195, 0)';
       return 'rgb(189, 189, 189)';
-switch.boiler_relay:
+switch.gas_heater_relay:
   friendly_name: Реле котла
   templates:
     icon_color: >

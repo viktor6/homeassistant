@@ -1,4 +1,4 @@
-binary_sensor.boiler:
+binary_sensor.gas_heater:
   templates:
     icon_color: >
       if (state === 'on') return 'rgb(0, 180, 30)';

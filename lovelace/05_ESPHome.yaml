@@ -2,17 +2,17 @@ title: ESPHome
 icon: mdi:chip
 cards:
   - type: entities
-    title: Boiler
+    title: Gas-heater
     show_header_toggle: false
     state_color: true
     entities:
-      - binary_sensor.boiler
-      - sensor.ip_boiler
-      - sensor.status_boiler
-      - binary_sensor.boiler_button
-    #   - binary_sensor.boiler_relay
-      - switch.boiler_relay
-      - switch.restart_boiler_switch
+      - binary_sensor.gas_heater
+      - sensor.ip_gas_heater
+      - sensor.status_gas_heater
+      - binary_sensor.gas_heater_button
+    #   - binary_sensor.gas_heater_relay
+      - switch.gas_heater_relay
+      - switch.restart_gas_heater_switch
       
   - type: entities
     title: Wall switch

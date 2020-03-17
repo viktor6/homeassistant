@@ -23,14 +23,14 @@ cards:
               name: "Температура в домі"
             - entity: sensor.bme280_temperature
               name: "Температура на вулиці"
-            - entity: binary_sensor.boiler_relay
+            - entity: binary_sensor.gas_heater_relay
               name: "Реле котла"
             - entity: sensor.heater_away_mode_status
               name: "Режим 'Нікого немає вдома'"
             - type: divider
             - entity: input_select.heater_automode_heater
               name: "Режим"
-            - entity: switch.boiler_relay
+            - entity: switch.gas_heater_relay
               name: "Реле котла"
               secondary_info: last-changed
             - entity: input_boolean.heater_day_night_automode
@@ -59,6 +59,7 @@ cards:
     cards:
       - type: weather-forecast
         entity: weather.home_assistant
+        
       - type: custom:mini-graph-card
         entities:
           - sensor.bme280_temperature

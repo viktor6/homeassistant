@@ -2,12 +2,12 @@
 climate:
   - platform: generic_thermostat
     name: Westen
-    heater: switch.boiler_relay
+    heater: switch.gas_heater_relay
     target_sensor: sensor.mi_t_582d3434ca5b # temp sensor in room
     ac_mode: False
     target_temp: 20
     min_temp: 18
-    max_temp: 24
+    max_temp: 25
     hot_tolerance: 0.5
     cold_tolerance: 0.5
     away_temp: 18
@@ -81,7 +81,7 @@ input_number:
     name: Day temperature (heater)
     initial: 20
     min: 18
-    max: 30
+    max: 25
     step: 0.5
     unit_of_measurement: "°C"
     mode: slider
@@ -89,7 +89,7 @@ input_number:
     name: Night temperature (heater)
     initial: 19.5
     min: 18
-    max: 30
+    max: 25
     step: 0.5
     unit_of_measurement: "°C"
     mode: slider
@@ -280,7 +280,7 @@ automation:
   - alias: "heater set auto mode when outdoor temp equals or lower"
     trigger:
       - platform: state
-        entity_id: sensor.narodmon_temperature
+        entity_id: sensor.bme280_temperature
     condition:
        - condition: state
          entity_id: input_boolean.heater_automation_active
@@ -306,12 +306,12 @@ automation:
         data_template:
           title: 'Котел'
           message: 
-            'включений Автоматичний режим: На вулиці знизилась температура до {{ states.sensor.bme280_temperature_xxx.state}}°C, поточна температура {{ states.climate.westen.attributes.current_temperature }}°C'
+            'включений Автоматичний режим: На вулиці знизилась температура до {{ states.sensor.bme280_temperature.state}}°C, поточна температура {{ states.climate.westen.attributes.current_temperature }}°C'
 
   - alias: "heater set off mode when outdoor temp equals or highter"
     trigger:
       - platform: state
-        entity_id: sensor.narodmon_temperature
+        entity_id: sensor.bme280_temperature
     condition:
        - condition: state
          entity_id: input_boolean.heater_automation_active
