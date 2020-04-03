@@ -21,9 +21,36 @@ logger:
 
 wake_on_lan:
 
+weather:
+  - platform: gismeteo
+
+mqtt:
+  broker: core-mosquitto  # Локальный брокер
+  discovery: true
+  discovery_prefix: homeassistant  
+  username: hass
+  password: hass
+
 #lovelace
 lovelace:
   mode: yaml
+  resources:
+    - url: /hacsfiles/canvas-gauge-card/canvas-gauge-card.js
+      type: module
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+      type: js
+    - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
+      type: module
+    - url: /hacsfiles/bignumber-card/bignumber-card.js
+      type: js
+    - url: /hacsfiles/atomic_calendar/atomic_calendar.js
+      type: module
+    - url: /hacsfiles/secondaryinfo-entity-row/secondaryinfo-entity-row.js
+      type: module
+    - url: /hacsfiles/lovelace-card-tools/card-tools.js
+      type: module
 
 customizer:
   custom_ui: hosted

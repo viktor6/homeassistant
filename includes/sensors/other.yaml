@@ -42,3 +42,6 @@
       friendly_name: BME280 Pressure mmHg
       icon_template: mdi:gauge
       unit_of_measurement: 'mmHg'
+
+-   platform: rpi_power
+    text_state: true

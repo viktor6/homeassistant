@@ -75,3 +75,4 @@ cards:
     state_color: true
     entities:
       - switch.undertabble_mi_wifi_socket
+      - switch.broadlink_1

@@ -401,6 +401,7 @@ cards:
                  icon: mdi:cash
 
         - type: entities
+          show_header_toggle: false
           entities:
           - entity: switch.plug_158d0003a58131
           - entity: switch.plug_158d0003a52e45

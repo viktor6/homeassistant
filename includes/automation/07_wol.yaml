@@ -6,9 +6,16 @@
     from: not_home
     platform: state
     to: home
+  condition:
+  - condition: state
+    entity_id: switch.my_pc
+    state: 'off'
   action:
   - service: script.wakeup_my_pc
-  
+  - service: notify.mobile_app_mi_9
+    data:
+      title: "WOL"
+      message: "Magic pockets sent"
 - alias: pc_accessories_on
   trigger:
   - entity_id: switch.my_pc

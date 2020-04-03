@@ -15,6 +15,7 @@ cards:
         - type: thermostat
           entity: climate.westen
         - type: entities
+          show_header_toggle: false
           entities:
             - entity: input_boolean.heater_automation_active
 #            - entity: climate.westen
@@ -59,7 +60,8 @@ cards:
     cards:
       - type: weather-forecast
         entity: weather.home_assistant
-        
+      - type: weather-forecast
+        entity: weather.gismeteo
       - type: custom:mini-graph-card
         entities:
           - sensor.bme280_temperature
@@ -99,10 +101,8 @@ cards:
   - type: custom:vertical-stack-in-card
        # - type: vertical-stack
     cards:
-    - type: markdown
-      content: "Out"
-
     - type: horizontal-stack
+      title: Out
       cards:
 # Out
       - type: custom:canvas-gauge-card
@@ -160,9 +160,8 @@ cards:
           borderMiddleWidth: 0
           borderInnerWidth: 0
           
-    - type: markdown
-      content: "Living room"
     - type: horizontal-stack
+      title: "Living room"
       cards:
 # Living room
 
@@ -197,9 +196,9 @@ cards:
           borderOuterWidth: 0
           borderMiddleWidth: 0
           borderInnerWidth: 0
-    - type: markdown
-      content: "Master bedroom"
+
     - type: horizontal-stack
+      title: "Master bedroom"
       cards:
 # M bedroom
 
@@ -235,9 +234,9 @@ cards:
           borderMiddleWidth: 0
           borderInnerWidth: 0
 
-    - type: markdown
-      content: "Children bedroom"
+
     - type: horizontal-stack
+      title: "Children bedroom"
       cards:
 # C bedroom
 
