@@ -1,0 +1,29 @@
+# Use this file to store secrets like usernames and passwords.
+# Learn more at https://home-assistant.io/docs/configuration/secrets/
+some_password: welcome
+#HomeAssistant
+latitude: 50.309703
+longitude: 29.072646
+elevation: 195
+time_zone: Europe/Kiev
+#MariaDB
+db_link: mysql://hass:c7h9no23@core-mariadb/homeassistant?charset=utf8
+#Telegram
+my_chat: 1050195105
+telegram_api_key: 628620757:AAGv-7xma7_rsZI-t87jM8CyRaAEpvyIL-A
+#Mi Wi-Fi Plug token
+xiaomi_miio_token: cb58eb95c4d479fe30c935019d8cbf61
+xiaomi_miio_token_2: 96154548431005d22e2823dfbd3f84e8
+#Google BackUp
+google_client_id: 323860711865-3r9b8a0q491nuq6b1hrsot27piegk5ug.apps.googleusercontent.com
+google_client_secret: ij7a1fbUOcwtQZjc8NfAEGWj
+#HACS token
+hacs_token: abf1d8354764cfbac23630cc302ccbf3ec2d0e38
+#Mi router 3
+router_usr: Admin
+router_pwd: sergeyz
+#Aqara hub
+aqara_mac: 50:EC:50:C4:CD:8B
+aqara_key: ta7hsltkqjitsm6z
+#narodmon
+narodmon_api_link: https://narodmon.ru/api/sensorsValues?sensors=73635&uuid=84e9207afb14beaed09ac935d69422f9&api_key=u3Eyz3uDykbDT
