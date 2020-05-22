@@ -17,6 +17,7 @@
       - sensor.maria_db_size
 
 #BME280
+      - sensor.ds18b20_out_temperature
       - sensor.bme280_humidity
       - sensor.bme280_pressure
       - sensor.bme280_pressure_in_mmhg
@@ -29,6 +30,8 @@
 #BT sensors
       - sensor.mi_h_582d3434ca5b
       - sensor.mi_t_582d3434ca5b
+      - sensor.mi_h_e72e017314c7
+      - sensor.mi_t_e72e017314c7
       
 #Power current
       - sensor.load_158d0003535c2f
@@ -37,3 +40,7 @@
       - sensor.load_broadlink_1
       - sensor.load_total_energy
       - sensor.load_xiaomi_power_strip
+
+#ASUSwrt
+      - sensor.asuswrt_download_speed
+      - sensor.asuswrt_upload_speed

@@ -3,3 +3,9 @@ sensor.mi_t_582d3434ca5b:
  
 sensor.mi_h_582d3434ca5b:
  friendly_name: Living room humidity
+ 
+sensor.mi_h_e72e017314c7:
+ friendly_name: C bedroom BT humidity
+ 
+sensor.mi_t_e72e017314c7:
+ friendly_name: C bedroom BT temperature

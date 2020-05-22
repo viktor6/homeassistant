@@ -12,17 +12,17 @@ cards:
       - type: custom:vertical-stack-in-card
         # title: Управління котлом
         cards:
-        - type: thermostat
-          entity: climate.westen
+        # - type: thermostat
+        #   entity: climate.westen
         - type: entities
           show_header_toggle: false
           entities:
             - entity: input_boolean.heater_automation_active
-#            - entity: climate.westen
-#              name: "Котел Westen"
+            - entity: climate.westen
+              name: "Котел Westen"
             - entity: sensor.mi_t_582d3434ca5b
               name: "Температура в домі"
-            - entity: sensor.bme280_temperature
+            - entity: sensor.ds18b20_out_temperature # sensor.bme280_temperature
               name: "Температура на вулиці"
             - entity: binary_sensor.gas_heater_relay
               name: "Реле котла"
@@ -64,7 +64,7 @@ cards:
         entity: weather.gismeteo
       - type: custom:mini-graph-card
         entities:
-          - sensor.bme280_temperature
+          - sensor.ds18b20_out_temperature # sensor.bme280_temperature
         name: Out temp
         show:
           labels: true
@@ -85,6 +85,7 @@ cards:
           - sensor.mi_t_582d3434ca5b
           - sensor.temperature_158d00044afff0
           - sensor.temperature_158d00041d6e0b
+          - sensor.mi_t_e72e017314c7
         name: In temp
         show:
           labels: true
@@ -106,7 +107,7 @@ cards:
       cards:
 # Out
       - type: custom:canvas-gauge-card
-        entity: sensor.bme280_temperature
+        entity: sensor.ds18b20_out_temperature # sensor.bme280_temperature
         card_height: 133
         gauge:
           type: "radial-gauge"

@@ -46,9 +46,10 @@ cards:
       - binary_sensor.bme280
       - sensor.ip_bme280
       - sensor.status_bme280
-      - sensor.bme280_temperature
-      - sensor.bme280_humidity
-      - sensor.bme280_pressure
+      - sensor.ds18b20_out_temperature
+    #   - sensor.bme280_temperature
+    #   - sensor.bme280_humidity
+    #   - sensor.bme280_pressure
       - switch.restart_bme280
       
   - type: entities

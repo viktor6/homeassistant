@@ -25,11 +25,22 @@ weather:
   - platform: gismeteo
 
 mqtt:
-  broker: core-mosquitto  # Локальный брокер
-  discovery: true
-  discovery_prefix: homeassistant  
-  username: hass
-  password: hass
+  broker: 192.168.31.125  # Локальный брокер
+  port: 1883
+  client_id: home-assistant-1
+  keepalive: 60
+  username: mqtt
+  password: mqtt
+  birth_message:
+    topic: "tele/hass1/LWT"
+    payload: "Online"
+    qos: 1
+    retain: true
+  will_message:
+    topic: "tele/hass1/LWT"
+    payload: "Offline"
+    qos: 1
+    retain: true
 
 #lovelace
 lovelace:
@@ -53,14 +64,14 @@ lovelace:
       type: module
 
 customizer:
-  custom_ui: hosted
+  custom_ui: local
 
 frontend:
   themes: !include_dir_merge_named themes/
 
-hacs:
-  token: !secret hacs_token 
-  appdaemon: true
+# hacs:
+#   token: !secret hacs_token 
+#   appdaemon: true
   
 # Text to speech
 tts:
@@ -89,6 +100,13 @@ asuswrt:
   host: 192.168.31.1
   username: !secret router_usr
   password: !secret router_pwd
+  interface: "eth2.2"
+  sensors:
+    - upload
+    - download
+    - upload_speed
+    - download_speed
+    
 device_tracker:
   - platform: asuswrt
     consider_home: 180
@@ -97,7 +115,7 @@ device_tracker:
 
 rest_command:
   narodmon:
-    url: http://narodmon.ru/get?ID={{ID}}&T1={{T1}}&H1={{H1}}&P1={{P1}}
+    url: http://narodmon.ru/get?ID={{ID}}&T1={{T1}} # &H1={{H1}}&P1={{P1}}
 
 #Folders
 sensor: !include_dir_merge_list includes/sensors

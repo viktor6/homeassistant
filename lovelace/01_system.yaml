@@ -102,6 +102,24 @@ cards:
       show_icon: true
       show_name: true
       show_state: true
+      title: Internet
+      entities:
+        - entity: sensor.asuswrt_download_speed
+          icon: 'mdi:speedometer'
+          name: Dn speed
+        - entity: sensor.asuswrt_upload_speed
+          icon: 'mdi:speedometer-slow'
+          name: Up speed
+        - entity: sensor.asuswrt_download
+          icon: 'mdi:download'
+          name: Downloaded
+        - entity: sensor.asuswrt_upload
+          icon: 'mdi:upload'
+          name: Uploaded
+    - type: glance
+      show_icon: true
+      show_name: true
+      show_state: true
       title: Coronavirus Worlwide
       entities:
         - entity: sensor.worldwide_coronavirus_confirmed
