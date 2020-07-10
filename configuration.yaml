@@ -8,9 +8,6 @@ homeassistant:
   time_zone: !secret time_zone
   customize: !include_dir_merge_named includes/customize
   packages: !include_dir_merge_named includes/packages
-#   packages:
-#     pack_1: !include westen.yaml
-#     pack_2: !include boiler.yaml
   whitelist_external_dirs :
     - /config
 
@@ -31,8 +28,8 @@ weather:
   - platform: gismeteo
 
 mqtt:
-  broker: core-mosquitto
-#   broker: 192.168.31.125  # Локальный брокер
+  broker: core-mosquitto  # Локальный брокер
+#   broker: 192.168.31.125
 #   port: 1883
   discovery: true
   discovery_prefix: homeassistant
@@ -71,10 +68,8 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-card-tools/card-tools.js
       type: module
-
-customizer:
-  custom_ui: hosted
-
+    - url: /hacsfiles/custom-ui/custom-ui.js?v=20200528
+      type: module
 frontend:
   themes: !include_dir_merge_named themes/
 
