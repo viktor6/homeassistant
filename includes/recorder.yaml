@@ -1,5 +1,5 @@
   purge_keep_days: 3
-  db_url: !secret db_link
+#   db_url: !secret db_link
   include:
     entities:
 #Climate
@@ -14,7 +14,7 @@
       - sensor.cpu_temperature
       - sensor.processor_use
       - sensor.memory_use_percent
-      - sensor.maria_db_size
+      - sensor.home_assistant_v2_db
 
 #BME280
       - sensor.ds18b20_out_temperature

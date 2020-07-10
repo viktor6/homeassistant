@@ -2,11 +2,15 @@
   rounding: True
   decimals: 2
   period: 60
-  log_spikes: False
-  use_median: False
-  active_scan: False
+#   log_spikes: False
+#   use_median: False
+  active_scan: True
   hci_interface: 0
   batt_entities: False
+  whitelist:
+    - '58:2D:34:34:CA:5B'
+    - 'E7:2E:01:73:14:C7'
+  report_unknown: True
 
 # - platform: mitemp_bt
 #   mac: '58:2D:34:34:CA:5B'
@@ -21,13 +25,13 @@
 #     - humidity
 #     - battery
 
-- platform: sql
-  db_url: !secret db_link
-  queries:
-  - name: Maria DB size
-    query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1048576, 2) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
-    column: 'value'
-    unit_of_measurement: MB
+# - platform: sql
+#   db_url: !secret db_link
+#   queries:
+#   - name: Maria DB size
+#     query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1048576, 2) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
+#     column: 'value'
+#     unit_of_measurement: MB
     
 - platform: template
   sensors:
@@ -43,5 +47,11 @@
       icon_template: mdi:gauge
       unit_of_measurement: 'mmHg'
 
--   platform: rpi_power
-    text_state: true
+- platform: rpi_power
+  text_state: true
+
+- platform: template
+  sensors:
+    thermostat_set_temp:
+      friendly_name: 'Set temperature'
+      value_template: "{{(state_attr('climate.westen' , 'temperature')|round(1))}}"

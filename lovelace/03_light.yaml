@@ -14,10 +14,73 @@ cards:
       entity: light.magic_light
       name: "Подкроватный свет"
       
-  - type: horizontal-stack
+  - type: vertical-stack
     cards:
     - type: button
       entity: switch.my_pc
       name: "Компьютер"
       state_color: true
       icon: mdi:desktop-classic
+
+    - type: vertical-stack
+      cards:
+        - type: entities
+          entities:
+            - timer.pc
+        - type: horizontal-stack
+          cards:
+            # - type: entities
+            #   entities:
+            #     - type: call-service
+            #       icon: mdi:timer-outline
+            #       name: "старт"
+            #       secondary_info: timer.pc
+            #       action_name: старт
+            #       service: script.turn_on
+            #       service_data:
+            #         entity_id: script.start_pc_timer
+            # - type: entities
+            #   entities:
+            #     - type: call-service
+            #       icon: mdi:pause-circle-outline
+            #       name: "пауза"
+            #       action_name: пауза
+            #       service: script.turn_on
+            #       service_data:
+            #         entity_id: script.pause_pc_timer
+            # - type: entities
+            #   entities:
+            #     - type: call-service
+            #       icon: mdi:timer-off-outline
+            #       name: "стоп"
+            #       action_name: стоп
+            #       service: script.turn_on
+            #       service_data:
+            #         entity_id: script.stop_pc_timer
+            - type: button
+              name: "ПК таймер старт"
+              icon: mdi:timer
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.start_pc_timer
+
+            - type: button
+              name: "ПК таймер пауза"
+              icon: mdi:pause-circle-outline
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.pause_pc_timer
+
+            - type: button
+              name: "ПК таймер отмена"
+              icon: mdi:timer-off
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.cancel_pc_timer
+

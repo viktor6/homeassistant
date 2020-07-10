@@ -16,6 +16,7 @@
     data:
       title: "WOL"
       message: "Magic pockets sent"
+
 - alias: pc_accessories_on
   trigger:
   - entity_id: switch.my_pc
@@ -35,3 +36,19 @@
   action:
     - service: switch.turn_off
       entity_id: switch.undertabble_mi_wifi_socket
+      
+- alias: pc_off_by timer
+  initial_state: true
+  trigger:
+# Таймер
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.pc
+  condition:
+  - condition: state
+    entity_id: switch.my_pc
+    state: 'on'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.my_pc

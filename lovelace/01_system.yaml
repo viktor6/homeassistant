@@ -79,7 +79,7 @@ cards:
           max: 80
           severity:
             green: 20
-            yellow: 45
+            yellow: 50
             red: 60
     - type: history-graph
       entities:
@@ -154,7 +154,7 @@ cards:
           name: Deaths
     - type: custom:mini-graph-card
       entities:
-        - entity: sensor.maria_db_size
+        - entity: sensor.home_assistant_v2_db
           name: База данных
           color: '#0066ff'
       icon: mdi:database
@@ -163,7 +163,7 @@ cards:
     - type: entities
       show_header_toggle: false
       entities:
-        - entity: sensor.maria_db_size
+        - entity: sensor.home_assistant_v2_db
           name: Объем базы данных Maria 
           icon: mdi:database
           secondary_info: entity-id

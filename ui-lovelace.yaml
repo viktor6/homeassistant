@@ -6,4 +6,6 @@ views:
   - !include lovelace/03_light.yaml
   - !include lovelace/04_power.yaml
   - !include lovelace/05_ESPHome.yaml
+  - !include lovelace/06_boiler.yaml
+  - !include lovelace/07_zigbee2mqtt.yaml
 #   - !include lovelace/.yaml

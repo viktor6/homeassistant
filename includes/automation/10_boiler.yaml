@@ -1,0 +1,98 @@
+- alias: boiler_23_05_turn_on
+  description: 'включить розетку бойлера после 23:05, если нагрузка на розетке посудомойки меньше 15 Вт'
+  trigger:
+  - at: '23:05'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: switch.plug_158d0003a58131 # розетка бойлера
+    state: 'off'
+  - condition: numeric_state
+    below: '15'
+    entity_id: sensor.load_158d0003535c2f # розетка посудомойки
+  action:
+  - service: switch.turn_on
+    entity_id: switch.plug_158d0003a58131
+    
+- alias: boiler_06_50_turn_off
+  description: 'выключить розетку бойлера в 06:50'
+  trigger:
+  - at: '06:50'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: switch.plug_158d0003a58131
+    state: 'on'
+  action:
+  - service: switch.turn_off # 
+    entity_id: switch.plug_158d0003a58131
+
+- alias: boiler_turn_on_after_start
+  description: 'включить розетку бойлера после старта системы в период с 23:05 по 06:50, если нагрузка на розетке посудомойки меньше 15 Вт'
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition:
+  - condition: time
+    after: '23:05'
+    before: '06:50'
+  - condition: state
+    entity_id: switch.plug_158d0003a58131
+    state: 'off'
+  - condition: numeric_state
+    below: '15'
+    entity_id: sensor.load_158d0003535c2f
+  action:
+  - service: switch.turn_on # 
+    entity_id: switch.plug_158d0003a58131
+
+- alias: boiler_turn_off_after_start
+  description: 'выключить розетку бойлера после старта системы в период с 06:50 по 23:05'
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition:
+  - condition: time
+    after: '06:50'
+    before: '23:05'
+  - condition: state
+    entity_id: switch.plug_158d0003a58131
+    state: 'on'
+  action:
+  - service: switch.turn_off # 
+    entity_id: switch.plug_158d0003a58131
+
+- alias: boiler_stop_when_dishwasher
+  description: 'выключить розетку бойлера, когда нагрузка на розетке посудомойки больше 15 Вт'
+  trigger:
+  - above: '15'
+    entity_id: sensor.load_158d0003535c2f
+    platform: numeric_state
+  condition:
+  - after: '23:05'
+    before: '06:50'
+    condition: time
+  - condition: state
+    entity_id: switch.plug_158d0003a58131
+    state: 'on'
+  action:
+  - service: switch.turn_off # 
+    entity_id: switch.plug_158d0003a58131
+    
+- alias: boiler_start_when_dishwasher
+  description: 'включить розетку бойлера, когда нагрузка на розетке посудомойки меньше 15 Вт в течение 15 минут'
+  trigger:
+  - below: '15'
+    entity_id: sensor.load_158d0003535c2f
+    for: 00:15
+    platform: numeric_state
+  condition:
+  - after: '23:05'
+    before: '06:50'
+    condition: time
+  - condition: state
+    entity_id: switch.plug_158d0003a58131
+    state: 'off'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.plug_158d0003a58131

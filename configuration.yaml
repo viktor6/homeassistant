@@ -7,8 +7,14 @@ homeassistant:
   unit_system: metric
   time_zone: !secret time_zone
   customize: !include_dir_merge_named includes/customize
-  packages:
-    pack_1: !include westen.yaml
+  packages: !include_dir_merge_named includes/packages
+#   packages:
+#     pack_1: !include westen.yaml
+#     pack_2: !include boiler.yaml
+  whitelist_external_dirs :
+    - /config
+
+config:
 
 default_config:
 
@@ -25,8 +31,11 @@ weather:
   - platform: gismeteo
 
 mqtt:
-  broker: 192.168.31.125  # Локальный брокер
-  port: 1883
+  broker: core-mosquitto
+#   broker: 192.168.31.125  # Локальный брокер
+#   port: 1883
+  discovery: true
+  discovery_prefix: homeassistant
   client_id: home-assistant-1
   keepalive: 60
   username: mqtt
@@ -64,14 +73,11 @@ lovelace:
       type: module
 
 customizer:
-  custom_ui: local
+  custom_ui: hosted
 
 frontend:
   themes: !include_dir_merge_named themes/
 
-# hacs:
-#   token: !secret hacs_token 
-#   appdaemon: true
   
 # Text to speech
 tts:
@@ -81,12 +87,6 @@ google:
   client_id: !secret google_client_id 
   client_secret: !secret google_client_secret
   
-xiaomi_aqara:
-  discovery_retry: 10
-  gateways:
-    - mac: !secret aqara_mac
-      key: !secret aqara_key
-      
 # Telegram Bot
 telegram_bot:
   - platform: polling
@@ -115,7 +115,7 @@ device_tracker:
 
 rest_command:
   narodmon:
-    url: http://narodmon.ru/get?ID={{ID}}&T1={{T1}} # &H1={{H1}}&P1={{P1}}
+    url: http://narodmon.ru/get?ID={{ID}}&T1={{T1}}&H1={{H1}}&P1={{P1}}
 
 #Folders
 sensor: !include_dir_merge_list includes/sensors
@@ -129,6 +129,9 @@ light: !include includes/light.yaml
 scene: !include includes/scenes.yaml
 group: !include includes/groups.yaml
 notify: !include includes/notify.yaml
+timer: !include includes/timer.yaml
+input_boolean: !include includes/input_boolean.yaml
+input_number: !include includes/input_number.yaml
 
 recorder: !include includes/recorder.yaml
 
