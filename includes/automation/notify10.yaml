@@ -1,0 +1,40 @@
+# - alias: temperature_up
+#   trigger:
+#     platform: numeric_state
+#     entity_id: sensor.temperature
+#     above: '27'
+#   action:
+#     - service: automation.turn_on
+#       entity_id: automation.notify10
+
+# - alias: temperature_down
+#   trigger:
+#     platform: numeric_state
+#     entity_id: sensor.temperature
+#     below: '27'
+#   action:
+#     - service: automation.turn_off
+#       entity_id: automation.notify10
+
+# - alias: notify10
+#   trigger:
+#     platform: time_pattern
+#     # You can also match on interval. This will match every 5 minutes
+#     minutes: "/5"
+#   action:
+#     - service: notify
+- id: '1596623950587'
+  alias: '111'
+  description: ''
+  trigger:
+  - platform: template
+    value_template: "{{ states('sensor.mi_t_582d3434ca5b') > states('sensor.bme280_temperature') }}"
+  - platform: template
+    value_template: "{{ states('sensor.bme280_temperature') > states('sensor.0x00158d00041d6e0b_temperature') }}"
+  condition: []
+  action:
+  - service: notify.mobile_app_mi_9
+    data:
+      title: "Home Assistant"
+      message: "test"
+  mode: single

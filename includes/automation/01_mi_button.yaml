@@ -1,34 +1,35 @@
 - alias: roof_light_toggle
   trigger:
-## Круглая кнопка
-  - platform: event
-    event_type: xiaomi_aqara.click
-    event_data:
-      entity_id: binary_sensor.switch_158d000359b03a
-      click_type: single
+  - device_id: a89e9f281a184bf2b9cb59affc51c0b4
+    discovery_id: 0x00158d000359b03a click_single
+    domain: mqtt
+    platform: device
+    subtype: single
+    type: click
   action:
     - service: switch.toggle
       entity_id: switch.relay_wall_switch_bedroom
       
 - alias: underbed_light_toggle
   trigger:
-## Круглая кнопка
-  - platform: event
-    event_type: xiaomi_aqara.click
-    event_data:
-      entity_id: binary_sensor.switch_158d000359b03a
-      click_type: double
+  - device_id: a89e9f281a184bf2b9cb59affc51c0b4
+    discovery_id: 0x00158d000359b03a click_double
+    domain: mqtt
+    platform: device
+    subtype: double
+    type: click
   action:
     - service: light.toggle
       entity_id: light.magic_light
       
 - alias: light_off
   trigger:
-  - platform: event
-    event_type: xiaomi_aqara.click
-    event_data:
-      entity_id: binary_sensor.switch_158d000359b03a
-      click_type: hold
+  - device_id: a89e9f281a184bf2b9cb59affc51c0b4
+    discovery_id: 0x00158d000359b03a click_long
+    domain: mqtt
+    platform: device
+    subtype: long
+    type: click
   action:
     - service: switch.turn_off
       entity_id: switch.relay_wall_switch_bedroom

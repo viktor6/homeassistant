@@ -1,6 +1,7 @@
-  purge_keep_days: 3
-#   db_url: !secret db_link
   include:
+    domains:
+      - switch
+      - light
     entities:
 #Climate
       - climate.westen
@@ -22,17 +23,20 @@
       - sensor.bme280_pressure
       - sensor.bme280_pressure_in_mmhg
       - sensor.bme280_temperature
+      - sensor.dew_point
+
 #zigbee sensors
-      - sensor.temperature_158d00041d6e0b
-      - sensor.temperature_158d00044afff0
-      - sensor.humidity_158d00041d6e0b
-      - sensor.humidity_158d00044afff0
+      - sensor.0x00158d00041d6e0b_temperature
+      - sensor.0x00158d00044afff0_temperature
+      - sensor.0x00158d00041d6e0b_humidity
+      - sensor.0x00158d00044afff0_humidity
+
 #BT sensors
       - sensor.mi_h_582d3434ca5b
       - sensor.mi_t_582d3434ca5b
       - sensor.mi_h_e72e017314c7
       - sensor.mi_t_e72e017314c7
-      
+
 #Power current
       - sensor.load_158d0003535c2f
       - sensor.load_158d0003a52e45
@@ -41,6 +45,21 @@
       - sensor.load_total_energy
       - sensor.load_xiaomi_power_strip
 
+      - sensor.0x00158d0003535c2f_power
+      - sensor.0x00158d0003a52e45_power
+      - sensor.0x00158d0003a58131_power
+
 #ASUSwrt
       - sensor.asuswrt_download_speed
       - sensor.asuswrt_upload_speed
+      
+  exclude:
+    entities:
+      - switch.restart_gas_heater_control
+      - switch.restart_wall_switch_bedroom
+      - switch.restart_corridor_light
+      - switch.restart_bme280
+      - switch.restart_diy_wireless_relay
+      - switch.restart_magic_light
+      - switch.xiaomi_power_strip
+      

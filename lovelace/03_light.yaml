@@ -59,7 +59,7 @@ cards:
             #         entity_id: script.stop_pc_timer
             - type: button
               name: "ПК таймер старт"
-              icon: mdi:timer
+              icon: mdi:timer-outline
               tap_action:
                 action: call-service
                 service: script.turn_on
@@ -77,7 +77,7 @@ cards:
 
             - type: button
               name: "ПК таймер отмена"
-              icon: mdi:timer-off
+              icon: mdi:timer-off-outline
               tap_action:
                 action: call-service
                 service: script.turn_on

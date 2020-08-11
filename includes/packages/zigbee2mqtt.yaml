@@ -3,7 +3,7 @@ zigbee2mqtt:
   timer:
     zigbee_permit_join:
       name: Time remaining
-      duration: 600
+      duration: 300
   
   sensor:
     - platform: mqtt

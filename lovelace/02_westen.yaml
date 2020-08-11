@@ -1,12 +1,6 @@
 title: Котел
 icon: mdi:radiator
 cards:
-  - type: entities
-    entities:
-      -  entity: switch.westen_hvac
-         name: "Котел"
-         icon: mdi:radiator
-
   - type: horizontal-stack
     cards:
     #   - type: custom:vertical-stack-in-card
@@ -65,9 +59,25 @@ cards:
       - type: custom:mini-graph-card
         entities:
           - sensor.bme280_temperature
+          - color: red
+            entity: sensor.dew_point
+
+        #   - color: grey
+        #     entity: binary_sensor.tod_long_day
+        #     name: Day
+        #     show_line: false
+        #     show_points: false
+        #     show_legend: true
+        #     y_axis: secondary
+        # state_map:
+        #   - value: "0"
+        #     label: off
+        #   - value: "1"
+        #     label: on
         name: Out temp
         show:
           labels: true
+          labels_secondary: true
         hours_to_show: 48
         points_per_hour: 1
         color_thresholds:
@@ -83,8 +93,8 @@ cards:
       - type: custom:mini-graph-card
         entities:
           - sensor.mi_t_582d3434ca5b
-          - sensor.temperature_158d00044afff0
-          - sensor.temperature_158d00041d6e0b
+          - sensor.0x00158d00044afff0_temperature
+          - sensor.0x00158d00041d6e0b_temperature
           - sensor.mi_t_e72e017314c7
         name: In temp
         show:
@@ -99,7 +109,7 @@ cards:
         hours_to_show: 24
         points_per_hour: 2
 
-#  - type: custom:vertical-stack-in-card
+#   - type: custom:vertical-stack-in-card
   - type: vertical-stack
     cards:
     - type: horizontal-stack
@@ -134,11 +144,11 @@ cards:
       title: "M bedroom"
       cards:
         - type: sensor
-          entity: sensor.temperature_158d00041d6e0b
+          entity: sensor.0x00158d00041d6e0b_temperature
           graph: line
           name: Temperature
         - type: sensor
-          entity: sensor.humidity_158d00041d6e0b
+          entity: sensor.0x00158d00041d6e0b_humidity
           graph: line
           name: Humidity
           
@@ -146,11 +156,11 @@ cards:
       title: "C bedroom"
       cards:
         - type: sensor
-          entity: sensor.temperature_158d00044afff0
+          entity: sensor.0x00158d00044afff0_temperature
           graph: line
           name: Temperature
         - type: sensor
-          entity: sensor.humidity_158d00044afff0
+          entity: sensor.0x00158d00044afff0_humidity
           graph: line
           name: Humidity
 #   - type: custom:vertical-stack-in-card

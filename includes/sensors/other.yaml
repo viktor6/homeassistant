@@ -39,13 +39,13 @@
       friendly_name: 'HVAC Status'
       value_template: "{{ states.climate.westen.attributes.hvac_action }}"
 
-- platform: template
-  sensors:
-    bme280_pressure_in_mmhg:
-      value_template: "{{ (states('sensor.bme280_pressure')|float * 0.75006)|round(2) }}"
-      friendly_name: BME280 Pressure mmHg
-      icon_template: mdi:gauge
-      unit_of_measurement: 'mmHg'
+# - platform: template
+#   sensors:
+#     bme280_pressure_in_mmhg:
+#       value_template: "{{ (states('sensor.bme280_pressure')|float * 0.75006)|round(2) }}"
+#       friendly_name: BME280 Pressure mmHg
+#       icon_template: mdi:gauge
+#       unit_of_measurement: 'mmHg'
 
 - platform: rpi_power
   text_state: true

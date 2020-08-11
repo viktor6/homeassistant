@@ -16,3 +16,38 @@
              - entity: input_boolean.zigbee_permit_join
              - entity: timer.zigbee_permit_join
              - entity: sensor.bridge_state
+
+      - type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+            - entity: sensor.0x00158d0003a58131_linkquality
+              name: "Бойлер"
+            - entity: sensor.0x00158d0003a52e45_linkquality
+              name: "Холодильник"
+            - entity: sensor.0x00158d0003535c2f_linkquality
+              name: "Посудомойка"
+            - entity: sensor.0x00158d000359b03a_linkquality
+              name: "Кнопка"
+            - entity: sensor.0x00158d00044afff0_linkquality
+              name: "Датчик в детской"
+            - entity: sensor.0x00158d00041d6e0b_linkquality
+              name: "Датчик в спальне"
+            - entity: sensor.0x00158d0003ce7f8d_linkquality
+              name: "Датчик запасной"
+              
+      - type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+            - entity: input_number.timer_minutes
+              name: minutes
+            - type: call-service
+              icon: mdi:timer-outline
+              name: "timer"
+              secondary_info: timer.variable
+              action_name: старт
+              service: script.turn_on
+              service_data:
+                entity_id: script.var_timer
+            - entity: timer.variable

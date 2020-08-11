@@ -1,5 +1,5 @@
   #############################################################################################
-  # Входные датчики: sensor.load_158d0003a58131 - Текущая потребляема мощность от SonOff POW
+  # Входные датчики: sensor.0x00158d0003a58131_power - Текущая потребляема мощность от SonOff POW
   # Выходные датчики:
   # ** Потребление по дневному, ночному тарифу, общее за месяц в kWh (кВт·ч) **
   # sensor.load_158d0003a58131_monthly_energy_001_day
@@ -23,7 +23,7 @@
 boiler:
   sensor:
     - platform: integration
-      source: sensor.load_158d0003a58131
+      source: sensor.0x00158d0003a58131_power
       name: energy_load_158d0003a58131_001
       unit_prefix: k
       round: 3
@@ -123,11 +123,11 @@ boiler:
   # Если потребление бойлера менее 10Вт в течение 1 минуты по дневному тарифу, то отключить бойлер
     - id: auto_boiler_off_001
       alias: "Boiler Auto Power OFF"
-      initial_state: true
+      initial_state: false
   # hide_entity: true
       trigger:
       - platform: numeric_state
-        entity_id: sensor.load_158d0003a58131
+        entity_id: sensor.0x00158d0003a58131_power
         below: 10
         for:
           minutes: 1
@@ -136,7 +136,7 @@ boiler:
         entity_id: input_boolean.boiler_001_auto_off
         state: 'on'
       - condition: state
-        entity_id: switch.plug_158d0003a58131
+        entity_id: switch.0x00158d0003a58131_switch
         state: 'on'
       - condition: time
         after: '07:00:00'
@@ -144,12 +144,12 @@ boiler:
       action:
       - service: switch.turn_off
         data:
-          entity_id: switch.plug_158d0003a58131
+          entity_id: switch.0x00158d0003a58131_switch
   
   # Ночной режим - автоматическое включение бойлера в 23:05 (если выключен)
     - id: boiler_on_23_001
       alias: "Boiler Power ON"
-      initial_state: true
+      initial_state: false
   # hide_entity: true
       trigger:
       - platform: time
@@ -159,17 +159,17 @@ boiler:
         entity_id: input_boolean.boiler_001_night
         state: 'on'
       - condition: state
-        entity_id: switch.plug_158d0003a58131
+        entity_id: switch.0x00158d0003a58131_switch
         state: 'off'
       action:
       - service: switch.turn_on
         data:
-          entity_id: switch.plug_158d0003a58131
+          entity_id: switch.0x00158d0003a58131_switch
   
   # Ночной режим - автоматическое выключение бойлера в 06:55 (если включен)
     - id: boiler_off_7_001
       alias: "Boiler Power OFF"
-      initial_state: true
+      initial_state: false
     # hide_entity: true
       trigger:
       - platform: time
@@ -179,9 +179,9 @@ boiler:
         entity_id: input_boolean.boiler_001_night
         state: 'on'
       - condition: state
-        entity_id: switch.plug_158d0003a58131
+        entity_id: switch.0x00158d0003a58131_switch
         state: 'on'
       action:
       - service: switch.turn_off
         data:
-          entity_id: switch.plug_158d0003a58131
+          entity_id: switch.0x00158d0003a58131_switch

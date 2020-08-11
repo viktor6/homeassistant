@@ -1,4 +1,4 @@
-binary_sensor.gas_heater:
+binary_sensor.gas_heater_control:
   templates:
     icon_color: >
       if (state === 'on') return 'rgb(0, 180, 30)';
@@ -23,6 +23,12 @@ binary_sensor.bme280:
       else return 'rgb(255, 0, 0)';
 
 binary_sensor.magic_light:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'rgb(0, 180, 30)';
+      else return 'rgb(255, 0, 0)';
+      
+binary_sensor.diy_wireless_relay:
   templates:
     icon_color: >
       if (state === 'on') return 'rgb(0, 180, 30)';

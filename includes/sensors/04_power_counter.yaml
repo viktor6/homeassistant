@@ -2,10 +2,10 @@
   sensors:
     load_158d0003a58131:
       friendly_name: 'Бойлер'
-      value_template: "{{ state_attr('switch.plug_158d0003a58131', 'load_power') }}"
+      value_template: "{{ states('sensor.0x00158d0003a58131_power') }}"
       icon_template: mdi:flash
       unit_of_measurement: 'Вт'
-      entity_id: switch.plug_158d0003a58131
+      entity_id: sensor.0x00158d0003a58131_power
 
 - platform: mqtt
   state_topic: "power/158d0003a58131/yesterday"
@@ -49,10 +49,10 @@
   sensors:
     load_158d0003a52e45:
       friendly_name: 'Холодильник в кухне'
-      value_template: "{{ state_attr('switch.plug_158d0003a52e45', 'load_power') }}"
+      value_template: "{{ states('sensor.0x00158d0003a52e45_power') }}"
       icon_template: mdi:flash
       unit_of_measurement: 'Вт'
-      entity_id: switch.plug_158d0003a52e45
+      entity_id: sensor.0x00158d0003a52e45_power
 
 - platform: mqtt
   state_topic: "power/158d0003a52e45/yesterday"
@@ -96,10 +96,10 @@
   sensors:
     load_158d0003535c2f:
       friendly_name: 'Посудомойка'
-      value_template: "{{ state_attr('switch.plug_158d0003535c2f', 'load_power') }}"
+      value_template: "{{ states('sensor.0x00158d0003535c2f_power') }}"
       icon_template: mdi:flash
       unit_of_measurement: 'Вт'
-      entity_id: switch.plug_158d0003535c2f
+      entity_id: sensor.0x00158d0003535c2f_power
 
 - platform: mqtt
   state_topic: "power/158d0003535c2f/yesterday"

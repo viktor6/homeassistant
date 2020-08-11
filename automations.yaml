@@ -1,0 +1,13 @@
+- id: '1596623950587'
+  alias: '111'
+  description: ''
+  trigger:
+  - platform: template
+    value_template: "{{ states('sensor.bme280_temperature') > states('sensor.mi_t_582d3434ca5b') }}"
+  condition: []
+  action:
+  - service: notify.mobile_app_mi_9
+    data:
+      title: "Home Assistant"
+      message: "HA start"
+  mode: single

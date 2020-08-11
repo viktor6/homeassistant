@@ -49,6 +49,8 @@ cards:
       - sensor.bme280_temperature
       - sensor.bme280_humidity
       - sensor.bme280_pressure
+      - sensor.bme280_pressure_in_mmhg
+      - sensor.dew_point
       - switch.restart_bme280
 
   - type: entities

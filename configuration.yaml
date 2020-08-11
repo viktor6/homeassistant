@@ -1,5 +1,5 @@
 
-# Configure a default setup of Home Assistant (frontend, api, etc)
+# Configure Home Assistant (frontend, api, etc)
 homeassistant:
   latitude: !secret latitude
   longitude: !secret longitude
@@ -11,16 +11,14 @@ homeassistant:
   whitelist_external_dirs :
     - /config
 
-config:
-
 default_config:
 
-updater:
+recorder: !include includes/recorder.yaml
 
 logger:
-  default: WARNING
-  logs:
-    homeassistant.loader: ERROR
+    default: warning
+    logs:
+      homeassistant.loader: error
 
 wake_on_lan:
 
@@ -29,8 +27,6 @@ weather:
 
 mqtt:
   broker: core-mosquitto  # Локальный брокер
-#   broker: 192.168.31.125
-#   port: 1883
   discovery: true
   discovery_prefix: homeassistant
   client_id: home-assistant-1
@@ -70,10 +66,11 @@ lovelace:
       type: module
     - url: /hacsfiles/custom-ui/custom-ui.js?v=20200528
       type: module
+    - url: /hacsfiles/stack-in-card/stack-in-card.js
+      type: module
 frontend:
   themes: !include_dir_merge_named themes/
 
-  
 # Text to speech
 tts:
   - platform: google_translate
@@ -128,5 +125,5 @@ timer: !include includes/timer.yaml
 input_boolean: !include includes/input_boolean.yaml
 input_number: !include includes/input_number.yaml
 
-recorder: !include includes/recorder.yaml
+
 
