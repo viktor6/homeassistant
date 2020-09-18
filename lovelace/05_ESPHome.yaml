@@ -27,16 +27,16 @@ cards:
       - switch.restart_wall_switch_bedroom
 
   - type: entities
-    title: 'Corridor light'
+    title: 'Coridor light'
     show_header_toggle: false
     state_color: true
     entities:
-      - binary_sensor.corridor_light
-      - sensor.ip_corridor_light
-      - sensor.status_corridor_light
-      - binary_sensor.corridor_night_light_button
-      - switch.corridor_night_light_relay
-      - switch.restart_corridor_light
+      - binary_sensor.coridor_light
+      - sensor.ip_coridor_light
+      - sensor.status_coridor_light
+      - binary_sensor.coridor_night_light_button
+      - switch.coridor_night_light_relay
+      - switch.restart_coridor_light
       
   - type: entities
     title: 'BME280'

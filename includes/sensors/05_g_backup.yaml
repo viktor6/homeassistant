@@ -1,8 +1,8 @@
-  - platform: template
-    sensors:
-      last_google_backup:
-        friendly_name: 'Последний бэкап'
-        value_template: '{{ as_timestamp(states.sensor.snapshot_backup.attributes.last_snapshot) | timestamp_custom("%d.%m.%y %H:%M") }}'
+#   - platform: template
+#     sensors:
+#       last_google_backup:
+#         friendly_name: 'Последний бэкап'
+#         value_template: '{{ as_timestamp(states.sensor.snapshot_backup.attributes.last_snapshot) | timestamp_custom("%d.%m.%y %H:%M") }}'
 
 #   - platform: template
 #     sensors:

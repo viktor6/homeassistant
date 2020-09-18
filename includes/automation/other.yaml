@@ -1,0 +1,24 @@
+# - id: automations_day
+#   alias: Утро
+#   initial_state: true  
+#   description: Режим работы Утро
+#   trigger:
+#   - at: 06:30:00
+#     platform: time
+#   condition: []
+#   action:
+#   - data:
+#       payload_template: 15
+#       topic: mqttbroker/ESP-01/matrix/light
+#     service: mqtt.publish
+#   - data:
+#       payload_template: 15
+#       topic: mqttbroker/ESP-02/matrix/light
+#     service: mqtt.publish
+#   - data:
+#       payload_template: 15
+#       topic: mqttbroker/ESP-03/matrix/light
+#     service: mqtt.publish
+#   - data: {}
+#     service: shell_command.request_day
+#   mode: single

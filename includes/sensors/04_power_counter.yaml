@@ -5,7 +5,7 @@
       value_template: "{{ states('sensor.0x00158d0003a58131_power') }}"
       icon_template: mdi:flash
       unit_of_measurement: 'Вт'
-      entity_id: sensor.0x00158d0003a58131_power
+    #   entity_id: sensor.0x00158d0003a58131_power
 
 - platform: mqtt
   state_topic: "power/158d0003a58131/yesterday"
@@ -52,7 +52,7 @@
       value_template: "{{ states('sensor.0x00158d0003a52e45_power') }}"
       icon_template: mdi:flash
       unit_of_measurement: 'Вт'
-      entity_id: sensor.0x00158d0003a52e45_power
+    #   entity_id: sensor.0x00158d0003a52e45_power
 
 - platform: mqtt
   state_topic: "power/158d0003a52e45/yesterday"
@@ -99,7 +99,7 @@
       value_template: "{{ states('sensor.0x00158d0003535c2f_power') }}"
       icon_template: mdi:flash
       unit_of_measurement: 'Вт'
-      entity_id: sensor.0x00158d0003535c2f_power
+    #   entity_id: sensor.0x00158d0003535c2f_power
 
 - platform: mqtt
   state_topic: "power/158d0003535c2f/yesterday"
@@ -147,7 +147,7 @@
       value_template: "{{ state_attr('switch.xiaomi_power_strip', 'load_power') }}"
       icon_template: mdi:flash
       unit_of_measurement: 'Вт'
-      entity_id: switch.xiaomi_power_strip
+    #   entity_id: switch.xiaomi_power_strip
         
 - platform: mqtt
   state_topic: "power/xiaomi_power_strip/yesterday"
@@ -195,7 +195,7 @@
       value_template: "{{ state_attr('switch.broadlink_1', 'current_power_w') }}"
       icon_template: mdi:flash
       unit_of_measurement: 'Вт'
-      entity_id: switch.broadlink_1
+    #   entity_id: switch.broadlink_1
         
 - platform: mqtt
   state_topic: "power/broadlink_1/yesterday"

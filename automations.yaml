@@ -1,13 +1,26 @@
-- id: '1596623950587'
-  alias: '111'
+- id: '1598526849738'
+  alias: '12'
   description: ''
   trigger:
-  - platform: template
-    value_template: "{{ states('sensor.bme280_temperature') > states('sensor.mi_t_582d3434ca5b') }}"
+  - at: 00:00
+    platform: time
   condition: []
   action:
-  - service: notify.mobile_app_mi_9
-    data:
-      title: "Home Assistant"
-      message: "HA start"
+  - service: switch.turn_on
+    entity_id: switch.coridor_night_light_relay
+  mode: single
+- id: '1598549268169'
+  alias: yeueu
+  description: ''
+  trigger:
+  - device_id: 405a2299aff74e56baeb458cd61c1e17
+    domain: binary_sensor
+    entity_id: binary_sensor.coridor_light
+    platform: device
+    type: connected
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.coridor_night_light_relay
+    service: switch.turn_on
   mode: single

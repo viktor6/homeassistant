@@ -9,4 +9,3 @@
   sensors:
     time_date_custom:
       value_template: "{{ now().strftime('%H:%M %d.%m.%y') }}"
-      entity_id: sensor.td_custom

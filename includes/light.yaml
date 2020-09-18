@@ -1,6 +1,6 @@
   - platform: switch
-    name: Corridor light
-    entity_id: switch.corridor_night_light_relay
+    name: Coridor light
+    entity_id: switch.coridor_night_light_relay
     
   - platform: switch
     name: Wall switch

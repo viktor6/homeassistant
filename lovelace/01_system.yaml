@@ -167,16 +167,3 @@ cards:
           name: Объем базы данных Maria 
           icon: mdi:database
           secondary_info: entity-id
-    #     - type: call-service
-    #       icon: mdi:database-minus
-    #       name: База данных
-    #       action_name: Сжать
-    #       service: recorder.purge
-    #       service_data:
-    #         keep_days: 2
-    #         repack: true
-        - type: divider
-        - entity: sensor.last_google_backup
-          name: Последний бэкап 
-          icon: mdi:database
-          secondary_info: entity-id

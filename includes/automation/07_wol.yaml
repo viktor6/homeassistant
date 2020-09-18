@@ -37,7 +37,7 @@
     - service: switch.turn_off
       entity_id: switch.undertabble_mi_wifi_socket
       
-- alias: pc_off_by timer
+- alias: pc_off_by_timer
   initial_state: true
   trigger:
 # Таймер

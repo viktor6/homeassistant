@@ -96,3 +96,23 @@
   action:
   - service: switch.turn_on
     entity_id: switch.0x00158d0003a58131_switch
+    
+- alias: boiler_issue
+  description: 'Notify when boiler fuse is ON'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.0x00158d0003a58131_power
+    below: '50'
+    for: 00:05
+  condition:
+  - condition: state
+    entity_id: switch.0x00158d0003a58131_switch
+    state: 'on'
+  - condition: numeric_state
+    entity_id: sensor.0x00158d0003535c2f_power
+    below: '15'
+  action:
+  - service: notify.telegram
+    data:
+      message: "Бойлер не греет! Поверьте предохранитель!"
+  mode: single

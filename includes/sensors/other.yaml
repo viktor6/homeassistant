@@ -12,40 +12,11 @@
     - 'E7:2E:01:73:14:C7'
   report_unknown: True
 
-# - platform: mitemp_bt
-#   mac: '58:2D:34:34:CA:5B'
-#   name: Living room BT sensor
-#   force_update: true
-#   median: 1
-#   timeout: 20
-#   retries: 5
-#   scan_interval: 600
-#   monitored_conditions:
-#     - temperature
-#     - humidity
-#     - battery
-
-# - platform: sql
-#   db_url: !secret db_link
-#   queries:
-#   - name: Maria DB size
-#     query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1048576, 2) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
-#     column: 'value'
-#     unit_of_measurement: MB
-    
 - platform: template
   sensors:
     thermostat_status:
       friendly_name: 'HVAC Status'
       value_template: "{{ states.climate.westen.attributes.hvac_action }}"
-
-# - platform: template
-#   sensors:
-#     bme280_pressure_in_mmhg:
-#       value_template: "{{ (states('sensor.bme280_pressure')|float * 0.75006)|round(2) }}"
-#       friendly_name: BME280 Pressure mmHg
-#       icon_template: mdi:gauge
-#       unit_of_measurement: 'mmHg'
 
 - platform: rpi_power
   text_state: true
