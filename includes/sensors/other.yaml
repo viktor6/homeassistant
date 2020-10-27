@@ -18,9 +18,6 @@
       friendly_name: 'HVAC Status'
       value_template: "{{ states.climate.westen.attributes.hvac_action }}"
 
-- platform: rpi_power
-  text_state: true
-
 - platform: template
   sensors:
     thermostat_set_temp:

@@ -22,9 +22,6 @@ logger:
 
 wake_on_lan:
 
-weather:
-  - platform: gismeteo
-
 mqtt:
   broker: core-mosquitto  # Локальный брокер
   discovery: true
@@ -64,12 +61,22 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-card-tools/card-tools.js
       type: module
-    - url: /hacsfiles/custom-ui/custom-ui.js?v=20200528
-      type: module
+    # - url: /hacsfiles/custom-ui/custom-ui.js?v=20200528
+    #   type: module
     - url: /hacsfiles/stack-in-card/stack-in-card.js
+      type: module
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
       type: module
 frontend:
   themes: !include_dir_merge_named themes/
+  extra_module_url:
+    - /hacsfiles/custom-ui/custom-ui.js
+    
+panel_iframe:
+  gateway:
+    title: 'SLS gateway'
+    icon: mdi:access-point-network
+    url: 'http://46.219.6.130:6061/'
 
 # Text to speech
 tts:
@@ -92,13 +99,8 @@ asuswrt:
   host: 192.168.31.1
   username: !secret router_usr
   password: !secret router_pwd
-  interface: "eth2.2"
-  sensors:
-    - upload
-    - download
-    - upload_speed
-    - download_speed
-    
+#   interface: "eth2.2"
+
 device_tracker:
   - platform: asuswrt
     consider_home: 180
@@ -124,6 +126,7 @@ notify: !include includes/notify.yaml
 timer: !include includes/timer.yaml
 input_boolean: !include includes/input_boolean.yaml
 input_number: !include includes/input_number.yaml
+remote: !include includes/remote.yaml
 
 
 

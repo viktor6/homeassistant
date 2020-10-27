@@ -1,9 +1,56 @@
 - platform: template
   sensors:
+    load_input_energy:
+      friendly_name: 'Входная мощность'
+      value_template: "{{ states('sensor.input_power') }}"
+      icon_template: mdi:power
+      unit_of_measurement: 'Вт'
+    #   entity_id: sensor.0x00158d0003a58131_power
+
+- platform: mqtt
+  state_topic: "power/input_energy/yesterday"
+  name: 'mqtt_power_yesterday_input_energy'
+  unit_of_measurement: 'кВт⋅ч'
+        
+- platform: mqtt
+  state_topic: "power/input_energy/today"
+  name: 'mqtt_power_today_input_energy'
+  unit_of_measurement: 'кВт⋅ч'
+
+- platform: mqtt
+  state_topic: "power/input_energy/month"
+  name: 'mqtt_power_month_input_energy'
+  unit_of_measurement: 'кВт⋅ч'
+    
+- platform: mqtt
+  state_topic: "power/input_energy/lastmonth"
+  name: 'mqtt_power_lastmonth_input_energy'
+  unit_of_measurement: 'кВт⋅ч'
+
+- platform: template
+  sensors:
+    money_month_input_energy:
+      friendly_name: "Стоимость за текущий месяц"
+      unit_of_measurement: 'грн'
+      value_template: "{{ (states.sensor.mqtt_power_month_input_energy.state | float * 1.68)|round(2) }}"
+      icon_template: mdi:square-inc-cash 
+    
+- platform: template
+  sensors:
+    money_lastmonth_input_energy:
+      friendly_name: "Стоимость за прошлый месяц"
+      unit_of_measurement: 'грн'
+      value_template: "{{ (states.sensor.mqtt_power_lastmonth_input_energy.state | float * 1.68)|round(2) }}"
+      icon_template: mdi:square-inc-cash 
+
+################################################################################
+
+- platform: template
+  sensors:
     load_158d0003a58131:
       friendly_name: 'Бойлер'
       value_template: "{{ states('sensor.0x00158d0003a58131_power') }}"
-      icon_template: mdi:flash
+      icon_template: mdi:water-boiler
       unit_of_measurement: 'Вт'
     #   entity_id: sensor.0x00158d0003a58131_power
 
@@ -48,9 +95,9 @@
 - platform: template
   sensors:
     load_158d0003a52e45:
-      friendly_name: 'Холодильник в кухне'
+      friendly_name: 'Холодильник'
       value_template: "{{ states('sensor.0x00158d0003a52e45_power') }}"
-      icon_template: mdi:flash
+      icon_template: mdi:fridge
       unit_of_measurement: 'Вт'
     #   entity_id: sensor.0x00158d0003a52e45_power
 
@@ -97,7 +144,7 @@
     load_158d0003535c2f:
       friendly_name: 'Посудомойка'
       value_template: "{{ states('sensor.0x00158d0003535c2f_power') }}"
-      icon_template: mdi:flash
+      icon_template: mdi:dishwasher
       unit_of_measurement: 'Вт'
     #   entity_id: sensor.0x00158d0003535c2f_power
 
@@ -145,7 +192,7 @@
     load_xiaomi_power_strip:
       friendly_name: 'Xiaomi power strip'
       value_template: "{{ state_attr('switch.xiaomi_power_strip', 'load_power') }}"
-      icon_template: mdi:flash
+      icon_template: mdi:led-strip
       unit_of_measurement: 'Вт'
     #   entity_id: switch.xiaomi_power_strip
         
@@ -191,9 +238,9 @@
 - platform: template
   sensors:
     load_broadlink_1:
-      friendly_name: 'Broadlink 1'
+      friendly_name: 'Стиральная машина'
       value_template: "{{ state_attr('switch.broadlink_1', 'current_power_w') }}"
-      icon_template: mdi:flash
+      icon_template: mdi:washing-machine
       unit_of_measurement: 'Вт'
     #   entity_id: switch.broadlink_1
         
@@ -238,7 +285,7 @@
 - platform: template
   sensors:
     load_total_energy:
-      friendly_name: 'Суммарное потребление'
+      friendly_name: 'Потребление по сенсорам'
       unit_of_measurement: "Вт"
       icon_template: mdi:sigma
       value_template: 

@@ -1,0 +1,7 @@
+  - alias: 'uptime_update'
+    trigger:
+      - platform: time_pattern
+        minutes: '/5'
+    action:
+      - service: homeassistant.update_entity
+        entity_id: sensor.last_boot_custom

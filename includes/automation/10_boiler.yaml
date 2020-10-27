@@ -33,12 +33,12 @@
   - event: start
     platform: homeassistant
   condition:
-  - condition: time
-    after: '23:05'
-    before: '06:50'
-  - condition: state
-    entity_id: switch.0x00158d0003a58131_switch
-    state: 'off'
+#   - condition: time
+#     after: '23:05'
+#     before: '06:50'
+#   - condition: state
+#     entity_id: switch.0x00158d0003a58131_switch
+#     state: 'off'
   - condition: numeric_state
     below: '15'
     entity_id: sensor.load_158d0003535c2f
@@ -52,12 +52,12 @@
   - event: start
     platform: homeassistant
   condition:
-  - condition: time
-    after: '06:50'
-    before: '23:05'
-  - condition: state
-    entity_id: switch.0x00158d0003a58131_switch
-    state: 'on'
+#   - condition: time
+#     after: '06:50'
+#     before: '23:05'
+#   - condition: state
+#     entity_id: switch.0x00158d0003a58131_switch
+#     state: 'on'
   action:
   - service: switch.turn_off # 
     entity_id: switch.0x00158d0003a58131_switch
@@ -69,9 +69,9 @@
     entity_id: sensor.load_158d0003535c2f
     platform: numeric_state
   condition:
-  - after: '23:05'
-    before: '06:50'
-    condition: time
+#   - after: '23:05'
+#     before: '06:50'
+#     condition: time
   - condition: state
     entity_id: switch.0x00158d0003a58131_switch
     state: 'on'
@@ -87,32 +87,57 @@
     for: 00:15
     platform: numeric_state
   condition:
-  - after: '23:05'
-    before: '06:50'
-    condition: time
+#   - after: '23:05'
+#     before: '06:50'
+#     condition: time
   - condition: state
     entity_id: switch.0x00158d0003a58131_switch
     state: 'off'
   action:
   - service: switch.turn_on
     entity_id: switch.0x00158d0003a58131_switch
+
+- alias: boiler_stop_when_washing_machine
+  description: 'выключить розетку бойлера, когда нагрузка на розетку стиралки больше 5 Вт'
+  trigger:
+  - above: '5'
+    entity_id: sensor.load_broadlink_1
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: switch.0x00158d0003a58131_switch
+    state: 'on'
+  action:
+  - service: switch.turn_off # 
+    entity_id: switch.0x00158d0003a58131_switch
     
+- alias: boiler_start_when_washing_machine
+  description: 'включить розетку бойлера, когда нагрузка на розетку стиралки меньше 5 Вт'
+  trigger:
+  - below: '5'
+    entity_id: sensor.load_broadlink_1
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: switch.0x00158d0003a58131_switch
+    state: 'off'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.0x00158d0003a58131_switch
+
 - alias: boiler_issue
   description: 'Notify when boiler fuse is ON'
   trigger:
   - platform: numeric_state
     entity_id: sensor.0x00158d0003a58131_power
     below: '50'
-    for: 00:05
+    for: 02:01
   condition:
   - condition: state
     entity_id: switch.0x00158d0003a58131_switch
     state: 'on'
-  - condition: numeric_state
-    entity_id: sensor.0x00158d0003535c2f_power
-    below: '15'
   action:
   - service: notify.telegram
     data:
-      message: "Бойлер не греет! Поверьте предохранитель!"
+      message: "Бойлер не греет уже 2 часа! Поверьте предохранитель!"
   mode: single

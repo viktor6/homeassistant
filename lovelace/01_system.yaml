@@ -98,42 +98,54 @@ cards:
         - person.olga
   - type: vertical-stack
     cards:
-    - type: glance
-      show_icon: true
-      show_name: true
-      show_state: true
-      title: Internet
-      entities:
-        - entity: sensor.asuswrt_download_speed
-          icon: 'mdi:speedometer'
-          name: Dn speed
-        - entity: sensor.asuswrt_upload_speed
-          icon: 'mdi:speedometer-slow'
-          name: Up speed
-        - entity: sensor.asuswrt_download
-          icon: 'mdi:download'
-          name: Downloaded
-        - entity: sensor.asuswrt_upload
-          icon: 'mdi:upload'
-          name: Uploaded
-    - type: glance
-      show_icon: true
-      show_name: true
-      show_state: true
-      title: Coronavirus Worlwide
-      entities:
-        - entity: sensor.worldwide_coronavirus_confirmed
-          icon: 'mdi:emoticon-neutral-outline'
-          name: Confirmed
-        - entity: sensor.worldwide_coronavirus_current
-          icon: 'mdi:emoticon-frown-outline'
-          name: Current
-        - entity: sensor.worldwide_coronavirus_recovered
-          icon: 'mdi:emoticon-happy-outline'
-          name: Recovered
-        - entity: sensor.worldwide_coronavirus_deaths
-          icon: 'mdi:emoticon-dead-outline'
-          name: Deaths
+    # - type: glance
+    #   show_icon: true
+    #   show_name: true
+    #   show_state: true
+    #   title: Input Energy monitor
+    #   entities:
+    #     - entity: sensor.input_voltage
+    #       icon: 'mdi:flash'
+    #       name: Voltage
+    #     - entity: sensor.input_current
+    #       icon: 'mdi:current-ac'
+    #       name: Current
+    #     - entity: sensor.input_power
+    #       icon: 'mdi:power'
+    #       name: Power
+    #     - entity: sensor.input_power_factor_2
+    #       icon: 'mdi:power'
+    #       name: PF
+    - type: vertical-stack
+      cards:
+      - type: horizontal-stack
+        cards:
+          - type: history-graph
+            hours_to_show: 6
+            entities:
+              - sensor.input_voltage
+          - type: history-graph
+            hours_to_show: 6
+            entities:
+              - sensor.input_power
+
+      - type: horizontal-stack
+        cards:
+          - type: history-graph
+            hours_to_show: 6
+            entities:
+              - sensor.input_current
+          - type: gauge
+            name: 'Power factor'
+            unit: '%'
+            entity: sensor.input_power_factor_2
+            min: 0
+            max: 100
+            severity:
+              green: 80
+              yellow: 70
+              red: 60
+
     - type: glance
       show_icon: true
       show_name: true
@@ -164,6 +176,47 @@ cards:
       show_header_toggle: false
       entities:
         - entity: sensor.home_assistant_v2_db
-          name: Объем базы данных Maria 
+          name: Объем базы данных
           icon: mdi:database
           secondary_info: entity-id
+
+  - type: glance
+    title: '-- Component Count --'
+    columns: 4
+    entities:
+          - entity: sensor.count_automations
+            name: Automations
+            icon: mdi:autorenew
+          - entity: sensor.count_scripts
+            name: Scripts
+            icon: mdi:script-text-outline
+          - entity: sensor.count_zones
+            name: Zones
+            icon: mdi:map-marker-radius
+          - entity: sensor.count_device_trackers
+            name: Device Trackers
+            icon: mdi:map-marker
+          - entity: sensor.count_switches
+            name: Switches
+            icon: mdi:light-switch
+          - entity: sensor.count_sensors
+            name: Sensors
+            icon: mdi:resistor
+          - entity: sensor.count_binary_sensors
+            name: Binary Sensors
+            icon: mdi:unfold-more-horizontal
+          - entity: sensor.count_input_booleans
+            name: Input Booleans
+            icon: mdi:toggle-switch
+          - entity: sensor.count_input_numbers
+            name: Input Numbers
+            icon: mdi:numeric
+          - entity: sensor.count_input_texts
+            name: Input Texts
+            icon: mdi:alphabetical
+          - entity: sensor.count_input_selects
+            name: Input Select
+            icon: mdi:view-list
+          - entity: sensor.count_input_datetimes
+            name: Input Date Times
+            icon: mdi:calendar-clock

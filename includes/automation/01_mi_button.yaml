@@ -1,37 +1,53 @@
 - alias: roof_light_toggle
   trigger:
-  - device_id: a89e9f281a184bf2b9cb59affc51c0b4
-    discovery_id: 0x00158d000359b03a click_single
-    domain: mqtt
-    platform: device
-    subtype: single
-    type: click
+    - platform: state
+      entity_id: sensor.0x00158d0003faaada_action
+      to: "left"
   action:
     - service: switch.toggle
       entity_id: switch.relay_wall_switch_bedroom
       
-- alias: underbed_light_toggle
+- alias: underbed_light_10
   trigger:
-  - device_id: a89e9f281a184bf2b9cb59affc51c0b4
-    discovery_id: 0x00158d000359b03a click_double
-    domain: mqtt
-    platform: device
-    subtype: double
-    type: click
+    - platform: state
+      entity_id: sensor.0x00158d0003faaada_action
+      to: "right"
   action:
-    - service: light.toggle
-      entity_id: light.magic_light
+    - service: light.turn_on
+      data:
+        entity_id: light.magic_light
+        brightness_pct: 10
+    # - service: light.toggle
+    #   entity_id: light.magic_light
+
+- alias: underbed_light_100
+  trigger:
+    - platform: state
+      entity_id: sensor.0x00158d0003faaada_action
+      to: "right_double"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.magic_light
+        brightness_pct: 100
+        
+- alias: underbed_light_off
+  trigger:
+    - platform: state
+      entity_id: sensor.0x00158d0003faaada_action
+      to: "right_long"
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.magic_light
       
 - alias: light_off
   trigger:
-  - device_id: a89e9f281a184bf2b9cb59affc51c0b4
-    discovery_id: 0x00158d000359b03a click_long
-    domain: mqtt
-    platform: device
-    subtype: long
-    type: click
+    - platform: state
+      entity_id: sensor.0x00158d0003faaada_action
+      to: "both"
   action:
     - service: switch.turn_off
       entity_id: switch.relay_wall_switch_bedroom
     - service: light.turn_off
-      entity_id: light.magic_light
+      entity_id: light.magic_light  

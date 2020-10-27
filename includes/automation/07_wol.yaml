@@ -11,7 +11,9 @@
     entity_id: switch.my_pc
     state: 'off'
   action:
-  - service: script.wakeup_my_pc
+#   - service: script.wakeup_my_pc
+  - service: switch.turn_on
+    entity_id: switch.my_pc
   - service: notify.mobile_app_mi_9
     data:
       title: "WOL"
@@ -24,8 +26,16 @@
     platform: state
     to: 'on'
   action:
-    - service: switch.turn_on
-      entity_id: switch.undertabble_mi_wifi_socket
+  - service: switch.turn_on
+    entity_id: switch.undertabble_mi_wifi_socket
+  - delay:
+      seconds: 5
+  - service: remote.send_command
+    data:
+      command:
+        - tv_on
+        - audio_power
+    entity_id: remote.xiaomi_ir_remote
 
 - alias: pc_accessories_off
   trigger:
@@ -33,9 +43,19 @@
     from: 'on'
     platform: state
     to: 'off'
+    for:
+      seconds: 30
   action:
-    - service: switch.turn_off
-      entity_id: switch.undertabble_mi_wifi_socket
+  - service: remote.send_command
+    data:
+      command:
+        - tv_on
+        - audio_power
+    entity_id: remote.xiaomi_ir_remote
+  - delay:
+      seconds: 3
+  - service: switch.turn_off
+    entity_id: switch.undertabble_mi_wifi_socket
       
 - alias: pc_off_by_timer
   initial_state: true

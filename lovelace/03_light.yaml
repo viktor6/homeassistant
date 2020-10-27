@@ -6,14 +6,28 @@ cards:
 
     - type: light
       entity: light.wall_switch
-      name: "Потолочный свет"
+      name: "Свет в детской"
     - type: light
       entity: light.coridor_light
       name: "Свет в коридоре"
     - type: light
       entity: light.magic_light
-      name: "Подкроватный свет"
-      
+      name: "Свет под кроватью"
+
+  - type: horizontal-stack
+    cards:
+
+    - type: light
+      entity: light.boiler_room
+      name: "Свет в котельной"
+    - type: light
+      entity: light.bath
+      name: "Свет в ванной"
+
+    - type: light
+      entity: light.gateway_led
+      name: "Светодиод шлюза" 
+
   - type: vertical-stack
     cards:
     - type: button

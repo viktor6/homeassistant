@@ -14,7 +14,7 @@ cards:
             - entity: input_boolean.heater_automation_active
             - entity: climate.westen
               name: "Котел Westen"
-            - entity: sensor.mi_t_582d3434ca5b
+            - entity: sensor.0x00158d00044afff0_temperature #mi_t_582d3434ca5b
               name: "Температура в домі"
             - entity: sensor.bme280_temperature
               name: "Температура на вулиці"
@@ -54,26 +54,12 @@ cards:
     cards:
       - type: weather-forecast
         entity: weather.home_assistant
-      - type: weather-forecast
-        entity: weather.gismeteo
+
       - type: custom:mini-graph-card
         entities:
           - sensor.bme280_temperature
-          - color: red
-            entity: sensor.dew_point
-
-        #   - color: grey
-        #     entity: binary_sensor.tod_long_day
-        #     name: Day
-        #     show_line: false
-        #     show_points: false
-        #     show_legend: true
-        #     y_axis: secondary
-        # state_map:
-        #   - value: "0"
-        #     label: off
-        #   - value: "1"
-        #     label: on
+        #   - color: red
+        #     entity: sensor.dew_point
         name: Out temp
         show:
           labels: true
@@ -102,9 +88,9 @@ cards:
         color_thresholds:
           - value: 18
             color: "#0000ff"
-          - value: 19
+          - value: 21
             color: "#00ff55"
-          - value: 22
+          - value: 24
             color: "#ffff00"
         hours_to_show: 24
         points_per_hour: 2
@@ -163,3 +149,15 @@ cards:
           entity: sensor.0x00158d00044afff0_humidity
           graph: line
           name: Humidity
+          
+    - type: horizontal-stack
+      title: "Basement"
+      cards:
+        - type: sensor
+          entity: sensor.0x00158d0003ce7f8d_temperature
+          graph: line
+          name: Temperature
+        - type: sensor
+          entity: sensor.0x00158d0003ce7f8d_humidity
+          graph: line
+          name: Humidity          

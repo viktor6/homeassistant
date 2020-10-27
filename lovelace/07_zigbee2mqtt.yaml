@@ -2,20 +2,25 @@
     icon: mdi:usb-flash-drive
     
     cards:
-    
+
       - type: vertical-stack
         cards:
-        - type: markdown
-          content: >
-             **Добавление устройств**     
-
         - type: entities
-          title: Добавление Zigbee устройств
-          show_header_toggle: false
           entities:
-             - entity: input_boolean.zigbee_permit_join
-             - entity: timer.zigbee_permit_join
-             - entity: sensor.bridge_state
+          - entity: binary_sensor.sls_state
+            state_color: true
+          - entity: sensor.sls_uptimestr
+          - entity: sensor.sls_rssi
+          - entity: sensor.sls_uptime
+          - entity: sensor.sls_freemem
+          - entity: sensor.sls_ip
+          - entity: sensor.sls_version
+          - entity: binary_sensor.sls_paring
+          - entity: switch.sls_main_join
+            state_color: true
+          show_header_toggle: false
+          title: SLS Gateway
+          state_color: true
 
       - type: vertical-stack
         cards:
@@ -35,6 +40,12 @@
               name: "Датчик в спальне"
             - entity: sensor.0x00158d0003ce7f8d_linkquality
               name: "Датчик запасной"
+            - entity: sensor.0x00158d0003faaada_linkquality
+              name: "Выключатель двойной в детской"
+            - entity: sensor.0x00158d000421fd0c_linkquality
+              name: "Выключатель одинарный в ванной"
+            - entity: sensor.0x00158d00041b19c6_linkquality
+              name: "Выключатель двойной в ванной"
               
       - type: vertical-stack
         cards:
@@ -51,3 +62,25 @@
               service_data:
                 entity_id: script.var_timer
             - entity: timer.variable
+      - type: horizontal-stack
+        cards:
+          - type: entity-button
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                command: audio_power
+                entity_id: remote.xiaomi_ir_remote
+            show_icon: true
+            entity: remote.xiaomi_ir_remote
+            icon: 'mdi:speaker'
+          - type: entity-button
+            tap_action:
+               action: call-service
+               service: remote.send_command
+               service_data:
+                 command: tv_on
+                 entity_id: remote.xiaomi_ir_remote
+            show_icon: true
+            entity: remote.xiaomi_ir_remote
+            icon: 'mdi:television'

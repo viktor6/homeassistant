@@ -9,6 +9,19 @@
 ##### Общее потребление
     - service: mqtt.publish
       data_template:
+        topic: "power/input_energy/today"
+        payload: '{{(states.sensor.mqtt_power_today_input_energy.state | float +
+                    (states.sensor.load_input_energy.state | float /120000))|round(5)}}'
+        retain: true
+    - service: mqtt.publish
+      data_template:
+        topic: "power/input_energy/month"
+        payload: '{{(states.sensor.mqtt_power_month_input_energy.state | float +
+                    (states.sensor.load_input_energy.state | float /120000))|round(5)}}'
+        retain: true  
+##### Общее потребление по датчикам
+    - service: mqtt.publish
+      data_template:
         topic: "power/total_energy/today"
         payload: '{{(states.sensor.mqtt_power_today_total_energy.state | float +
                     (states.sensor.load_total_energy.state | float /120000))|round(5)}}'
@@ -19,7 +32,6 @@
         payload: '{{(states.sensor.mqtt_power_month_total_energy.state | float +
                     (states.sensor.load_total_energy.state | float /120000))|round(5)}}'
         retain: true  
-  
 ##### ZigBee #1
     - service: mqtt.publish
       data_template:
@@ -100,6 +112,12 @@
 ##### Общее потребление
     - service: mqtt.publish
       data_template:
+        topic: "power/input_energy/yesterday"
+        payload: '{{(states.sensor.mqtt_power_today_input_energy.state | float )|round(5)}}'
+        retain: true 
+##### Общее потребление по датчикам
+    - service: mqtt.publish
+      data_template:
         topic: "power/total_energy/yesterday"
         payload: '{{(states.sensor.mqtt_power_today_total_energy.state | float )|round(5)}}'
         retain: true 
@@ -139,6 +157,12 @@
 
 ##### Обнуление данных текущего дня
 ##### Общее потребление
+    - service: mqtt.publish
+      data_template:
+        topic: "power/input_energy/today"
+        payload: '{{ 0.0 }}'
+        retain: true
+##### Общее потребление по датчикам
     - service: mqtt.publish
       data_template:
         topic: "power/total_energy/today"
@@ -191,6 +215,12 @@
 ##### Общее потребление
     - service: mqtt.publish
       data_template:
+        topic: "power/input_energy/lastmonth"
+        payload: '{{(states.sensor.mqtt_power_month_input_energy.state | float )|round(5)}}'
+        retain: true 
+##### Общее потребление по датчикам
+    - service: mqtt.publish
+      data_template:
         topic: "power/total_energy/lastmonth"
         payload: '{{(states.sensor.mqtt_power_month_total_energy.state | float )|round(5)}}'
         retain: true 
@@ -229,6 +259,12 @@
 
 ##### Обнуление данных текущего месяца
 ##### Общее потребление
+    - service: mqtt.publish
+      data_template:
+        topic: "power/input_energy/month"
+        payload: '{{ 0.0 }}'
+        retain: true
+##### Общее потребление по датчикам
     - service: mqtt.publish
       data_template:
         topic: "power/total_energy/month"
